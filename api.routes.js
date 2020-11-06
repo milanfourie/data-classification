@@ -30,17 +30,29 @@ router.post('/upload', (req, res) => {
                 let linkedIn = data.match('https://www.linkedin.com/in/[a-zA-Z0-9.-]+')
     
                 res.json({
+                    heading: 'We found the following POPI details: ',
                     fileName: uploadedFile.name,
-                    nameAndSurname: nameAndSurname,
-                    contactNumber: contactNumber,
-                    emailAddress: emailAddress,
-                    idNumber: idNumber,
-                    dateOfBirth: dateOfBirth,
-                    linkedIn: linkedIn,
-                    processed: true,
-                    saved: false
+                    nameAndSurname: nameAndSurname == null ? ' ' : nameAndSurname,
+                    contactNumber: contactNumber == null ? ' ' : contactNumber,
+                    emailAddress: emailAddress == null ? ' ' : emailAddress,
+                    idNumber: idNumber == null ? ' ' : idNumber,
+                    dateOfBirth: dateOfBirth == null ? ' ' : dateOfBirth,
+                    linkedIn: linkedIn == null ? ' ' : linkedIn,
                 })
             })
+        })
+    }
+    else
+    {
+        res.json({
+            heading: `We can't process ${req.files.file.name.split('.')[1]} at the moment. Please fill in the necessary details below.`,
+            fileName: '',
+            nameAndSurname: '',
+            contactNumber: '',
+            emailAddress: '',
+            idNumber: '',
+            dateOfBirth: '',
+            linkedIn: '',
         })
     }
 })

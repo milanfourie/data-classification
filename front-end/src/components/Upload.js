@@ -44,6 +44,7 @@ function Upload(){
         return (
             <Edit
 
+                heading={response.heading}
                 fileName={response.fileName}
                 nameAndSurname={response.nameAndSurname}
                 contactNumber={response.contactNumber}

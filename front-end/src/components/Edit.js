@@ -4,6 +4,7 @@ class Edit extends React.Component{
     constructor() {
         super()
         this.state = {
+            heading: '',
             fileName: '',
             nameAndSurname: '',
             contactNumber: '',
@@ -11,8 +12,6 @@ class Edit extends React.Component{
             idNumber: '',
             dateOfBirth: '',
             linkedIn: '',
-            processed: false,
-            saved: false
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -43,6 +42,7 @@ class Edit extends React.Component{
 
     componentDidMount() {
         this.setState({
+            heading: this.props.heading,
             fileName: this.props.fileName,
             nameAndSurname: this.props.nameAndSurname,
             contactNumber: this.props.contactNumber,
@@ -59,8 +59,9 @@ class Edit extends React.Component{
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
+                    <h1> {this.state.heading} </h1>
                     <label>
-                        Name and Surname: <input type="text" name="nameAndSurname" value={this.state.nameAndSurname} onChange={this.handleChange}></input>
+                        Name and Surname: <input type="text" name="nameAndSurname" value={this.state.nameAndSurname} width="100%" onChange={this.handleChange}></input>
                     </label>
                     <br></br>
                     <label>
