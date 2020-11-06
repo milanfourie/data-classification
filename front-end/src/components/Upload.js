@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Upload.css' 
 
+import Edit from './Edit'
+
 function Upload(){
 
     const [file, setFile] = useState('') //useState() to save the selected file in
@@ -14,16 +16,18 @@ function Upload(){
     const handleSubmit = (e) => {
         e.preventDefault() //Prevent default HTML form behaviour on submission for file upload
 
-        let formData = new FormData() //Create a new instance of FormData
-        formData.append('file', file) //formData.append(key, value)
-
-        fetch('http://localhost:3001/api/upload', {
-            method: 'POST',
-            body: formData //POST formData (with selected file) as body for fetch request
-        })
-        .then(response => response.json())
-        .then(jsonResponse => setResponse(jsonResponse)) //Save API response to useState() for use with <Edit /> component
-        .catch(error => console.log(error)) //Log any fetch-related errors to the console for now.
+        if (file) {
+            let formData = new FormData() //Create a new instance of FormData
+            formData.append('file', file) //formData.append(key, value)
+    
+            fetch('http://localhost:3001/api/upload', {
+                method: 'POST',
+                body: formData //POST formData (with selected file) as body for fetch request
+            })
+            .then(response => response.json())
+            .then(jsonResponse => setResponse(jsonResponse)) //Save API response to useState() for use with <Edit /> component
+            .catch(error => console.log(error)) //Log any fetch-related errors to the console for now.
+        }
     }
 
     if (!response) {
@@ -35,6 +39,23 @@ function Upload(){
                 </form>
             </div>
         )        
+    }
+    else {
+        return (
+            <Edit
+
+                fileName={response.fileName}
+                nameAndSurname={response.nameAndSurname}
+                contactNumber={response.contactNumber}
+                emailAddress={response.emailAddress}
+                idNumber={response.idNumber}
+                dateOfBirth={response.dateOfBirth}
+                linkedIn={response.linkedIn}
+                processed={response.processed}
+                saved={response.saved}
+                
+            />            
+        )
     }
 }
 
