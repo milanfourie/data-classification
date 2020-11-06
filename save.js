@@ -4,12 +4,12 @@ const fileModel = require('./models/file.model')
 router.post('/', (req, res) => {
     let formData = {
         fileName: req.body.fileName,
-        nameAndSurname: req.body.nameAndSurname != ' ' ? true : false,
-        contactNumber: req.body.contactNumber != ' ' ? true : false,
-        emailAddress: req.body.emailAddress != ' ' ? true : false,
-        idNumber: req.body.idNumber != ' ' ? true : false,
-        dateOfBirth: req.body.dateOfBirth != ' ' ? true : false,
-        linkedInProfile: req.body.linkedInProfile != ' ' ? true : false
+        nameAndSurname: req.body.nameAndSurname.replace(' ', '') != '' ? true : false,
+        contactNumber: req.body.contactNumber.replace(' ', '') != '' ? true : false,
+        emailAddress: req.body.emailAddres.replace(' ', '') != '' ? true : false,
+        idNumber: req.body.idNumber.replace(' ', '') != '' ? true : false,
+        dateOfBirth: req.body.dateOfBirth.replace(' ', '') != '' ? true : false,
+        linkedInProfile: req.body.linkedInProfile.replace(' ', '') != '' ? true : false
     }
 
     let fileMetadata = new fileModel(formData)
