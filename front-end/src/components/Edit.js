@@ -12,6 +12,7 @@ class Edit extends React.Component{
             idNumber: '',
             dateOfBirth: '',
             linkedIn: '',
+            metadata: false
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -31,12 +32,15 @@ class Edit extends React.Component{
             formData.append(key, value)
         }
 
-        fetch('/api/save', {
+        fetch('http://localhost:3001/api/save', {
             method: 'POST', 
             body: formData
         })
         .then(response => response.json())
-        .then(data => this.setState({saved: data.saved}))
+        .then(data => {
+            this.setState({metadata: true})
+            console.log(data)
+        })
         .catch(error => console.log(error))
     }
 
@@ -49,45 +53,53 @@ class Edit extends React.Component{
             emailAddress: this.props.emailAddress,
             idNumber: this.props.idNumber,
             dateOfBirth: this.props.dateOfBirth,
-            linkedIn: this.props.linkedIn,
-            processed: this.props.processed,
-            saved: this.props.saved
+            linkedIn: this.props.linkedIn
         })
     }
 
     render() {
-        return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <h1> {this.state.heading} </h1>
-                    <label>
-                        Name and Surname: <input type="text" name="nameAndSurname" value={this.state.nameAndSurname} width="100%" onChange={this.handleChange}></input>
-                    </label>
-                    <br></br>
-                    <label>
-                        Contact Number: <input type="text" name="contactNumber" value={this.state.contactNumber} onChange={this.handleChange}></input>
-                    </label>
-                    <br></br>
-                    <label>
-                        Email Address: <input type="text" name="emailAddress" value={this.state.emailAddress} onChange={this.handleChange}></input>
-                    </label>
-                    <br></br>
-                    <label>
-                        ID Number: <input type="text" name="idNumber" value={this.state.idNumber} onChange={this.handleChange}></input>
-                    </label>
-                    <br></br>
-                    <label>
-                        Date of Birth: <input type="text" name="dateOfBirth" value={this.state.dateOfBirth} onChange={this.handleChange}></input>
-                    </label>
-                    <br></br>
-                    <label>
-                        LinkedIn: <input type="text" name="linkedIn" value={this.state.linkedIn} onChange={this.handleChange}></input>
-                    </label>
-                    <br></br>
-                    <button> Save </button>
-                </form>                
-            </div>  
-        )
+        if (!this.state.metadata) {
+            return (
+                <div>
+                    <h2> {this.state.heading} </h2>
+                    <form onSubmit={this.handleSubmit}>
+                        <h1> {this.state.heading} </h1>
+                        <label>
+                            Name and Surname: <input type="text" name="nameAndSurname" value={this.state.nameAndSurname} width="100%" onChange={this.handleChange}></input>
+                        </label>
+                        <br></br>
+                        <label>
+                            Contact Number: <input type="text" name="contactNumber" value={this.state.contactNumber} onChange={this.handleChange}></input>
+                        </label>
+                        <br></br>
+                        <label>
+                            Email Address: <input type="text" name="emailAddress" value={this.state.emailAddress} onChange={this.handleChange}></input>
+                        </label>
+                        <br></br>
+                        <label>
+                            ID Number: <input type="text" name="idNumber" value={this.state.idNumber} onChange={this.handleChange}></input>
+                        </label>
+                        <br></br>
+                        <label>
+                            Date of Birth: <input type="text" name="dateOfBirth" value={this.state.dateOfBirth} onChange={this.handleChange}></input>
+                        </label>
+                        <br></br>
+                        <label>
+                            LinkedIn: <input type="text" name="linkedIn" value={this.state.linkedIn} onChange={this.handleChange}></input>
+                        </label>
+                        <br></br>
+                        <button> Save </button>
+                    </form>                
+                </div>  
+            )
+        }
+        else {
+            return (
+                <div>
+                    <h1> File metadata saved! See MongoDB Atlas for more information. </h1>
+                </div>
+            )
+        }
     }
 }
 
