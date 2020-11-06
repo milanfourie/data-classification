@@ -20,7 +20,7 @@ function Upload(){
             let formData = new FormData() //Create a new instance of FormData
             formData.append('file', file) //formData.append(key, value)
     
-            fetch('http://localhost:3001/api/upload', {
+            fetch('/api/upload', {
                 method: 'POST',
                 body: formData //POST formData (with selected file) as body for fetch request
             })

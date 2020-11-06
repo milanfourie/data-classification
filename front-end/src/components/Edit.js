@@ -32,7 +32,7 @@ class Edit extends React.Component{
             formData.append(key, value)
         }
 
-        fetch('http://localhost:3001/api/save', {
+        fetch('/api/save', {
             method: 'POST', 
             body: formData
         })
