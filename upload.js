@@ -1,13 +1,13 @@
 const router = require('express').Router()
 
-router.post('/upload', (req, res) => {
+router.post('/', (req, res) => {
 
     if (req.files.file.name.split(".")[1] == 'txt' || req.files.file.name.split(".")[1] == 'csv'){
         let uploadedFile = req.files.file
 
         uploadedFile.mv('./uploads/' + uploadedFile.name, function(error){
             if (error) {
-                res.status(500).send("Oops! Something went wrong. Please try again.")               
+                console.log(error)               
             }
 
             const fs = require('fs')
