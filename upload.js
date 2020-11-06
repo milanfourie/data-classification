@@ -45,7 +45,7 @@ router.post('/', (req, res) => {
     else
     {
         res.json({
-            heading: `We can't process ${req.files.file.name.split('.')[1]} at the moment. Please fill in the necessary details below.`,
+            heading: `We can't process ${req.files.file.name.split('.')[1]} files at the moment. Please fill in the necessary details below.`,
             fileName: '',
             nameAndSurname: '',
             contactNumber: '',

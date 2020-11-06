@@ -57,6 +57,7 @@ class Edit extends React.Component{
         if (!this.state.metadata) {
             return (
                 <div>
+                    <h2> {this.state.heading} </h2>
                     <form onSubmit={this.handleSubmit}>
                         <h1> {this.state.heading} </h1>
                         <label>
