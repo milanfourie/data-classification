@@ -36,7 +36,11 @@ class Edit extends React.Component{
             method: 'POST', 
             body: formData
         })
-        .then(response => this.setState({metadata: true}))
+        .then(response => response.json())
+        .then(data => {
+            this.setState({metadata: true})
+            console.log(data)
+        })
         .catch(error => console.log(error))
     }
 
