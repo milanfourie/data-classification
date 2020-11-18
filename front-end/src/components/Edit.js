@@ -98,13 +98,13 @@ class Edit extends React.Component{
                     <h1> File metadata saved! </h1>
                     <br></br>
                     <div>  
-                        File Name: {this.state.fileName === '' ? "true" : "false"} <br></br>
-                        Name and Surname: {this.state.nameAndSurname === '' ? "true" : "false"} <br></br>
-                        Email Address: {this.state.emailAddress === '' ? "true" : "false"} <br></br>
-                        ID Number: {this.state.idNumber === '' ? "true" : "false"} <br></br>
-                        Contact Number: {this.state.contactNumber === '' ? "true" : "false"} <br></br>
-                        LinkedIn: {this.state.linkedIn === '' ? "true" : "false"} <br></br>
-                        Date of Birth: {this.state.dateOfBirth === '' ? "true" : "false"} <br></br>
+                        File Name: {this.state.fileName !== '' ? "true" : "false"} <br></br>
+                        Name and Surname: {this.state.nameAndSurname !== '' ? "true" : "false"} <br></br>
+                        Email Address: {this.state.emailAddress !== '' ? "true" : "false"} <br></br>
+                        ID Number: {this.state.idNumber !== '' ? "true" : "false"} <br></br>
+                        Contact Number: {this.state.contactNumber !== '' ? "true" : "false"} <br></br>
+                        LinkedIn: {this.state.linkedIn !== '' ? "true" : "false"} <br></br>
+                        Date of Birth: {this.state.dateOfBirth !== '' ? "true" : "false"} <br></br>
                     </div>
                 </div>
             )
